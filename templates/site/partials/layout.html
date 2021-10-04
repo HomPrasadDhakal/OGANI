@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block metadis %}{% endblock metadis %}">
+    <meta name="keywords" content="{% block metakey %}{% endblock metakey %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+            {% block customcss %}{% endblock customcss %}
+    <!-- Google Font -->
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap' %}" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+   {% block header %}{% endblock header %}
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    {% block banner %}{% endblock banner %}
+    <!-- Hero Section End -->
+
+    <!-- Categories Section Begin -->
+    {% block slider %}{% endblock slider %}
+    <!-- Categories Section End -->
+
+    <!-- Featured Section Begin -->
+    {% block allcategory %}{% endblock allcategory %}
+    <!-- Featured Section End -->
+
+    <!-- Banner Begin -->
+    {% comment %} <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="/static/img/banner/banner-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="/static/img/banner/banner-2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    <!-- Banner End -->
+
+    <!-- Latest Product Section Begin -->
+    {% block latestproduct %}{% endblock latestproduct %}
+    <!-- Latest Product Section End -->
+
+    <!-- Blog Section Begin -->
+    {% block blog %}{% endblock blog %}
+    <!-- Blog Section End -->
+
+    <!-- Footer Section Begin -->
+   {% block footer %}{% endblock footer %}
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+{% block script %}{% endblock script %}
+
+
+</body>
+
+</html>
