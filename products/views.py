@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+# VIEWS FOR ADMIN PANNEL
+def AdminDashBoardView(request):
+    template="admin/index.html"
+    context = {}
+    return render(request, template, context)
