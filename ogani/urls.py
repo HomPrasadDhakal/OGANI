@@ -10,7 +10,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #CUSTOM URLS
     #URLS FOR ADMIN PANNEL
-    path('ogani_dashboard/', pro.AdminDashBoardView, name="admin-dashboard" ),
+    path('dashboard/', pro.AdminDashBoardView, name="admin-dashboard" ),
+    #URLS FOR SITE FRONTEND
+    path('', pro.FrontEndView, name="front-end-index"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
