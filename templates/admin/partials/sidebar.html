@@ -3,7 +3,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div style="text-align: center;">
-        <a href="#" class="brand-link">
+        <a href="{% url 'admin-dashboard' %}" class="brand-link">
             <h2>OGANI STORE</h2>
         </a>
     </div>
@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-block">view site</button>
+                    <a href="{% url 'front-end-index' %}"><button class="btn btn-primary btn-block">view site</button></a>
                 </li>
             </ul>
         </nav>
