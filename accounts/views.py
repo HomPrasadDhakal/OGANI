@@ -26,4 +26,5 @@ def AdminLoginProcess(request):
 
 def AdminLogoutProcress(request):
     logout(request)
+    messages.success(request,"successfully logout! please login again")
     return HttpResponseRedirect(reverse("loginpage"))
