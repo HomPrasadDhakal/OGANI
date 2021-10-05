@@ -17,6 +17,7 @@ urlpatterns = [
     path('admin_logout_process/', acc.AdminLogoutProcress, name="admin-logout-process" ),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
+    path('costomer_login_process/', acc.CustomerLoginProcress, name="costomer-login-process"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

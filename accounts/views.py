@@ -28,3 +28,18 @@ def AdminLogoutProcress(request):
     logout(request)
     messages.success(request,"successfully logout! please login again")
     return HttpResponseRedirect(reverse("loginpage"))
+
+
+
+
+#VIEWS FOR COSTOMER LOGIN
+def CustomerLoginProcress(request):
+    email=request.POST.get("email")
+    password=request.POST.get("password")
+    user=authenticate(request=request,email=email,password=password)
+    if user is not None and user.is_customer:
+        login(request=request,user=user)
+        return HttpResponseRedirect(reverse("front-end-index"))
+    else:
+        messages.error(request,"Error in Login! Invalid Login Details!")
+        return HttpResponseRedirect(reverse("front-end-index"))
