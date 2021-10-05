@@ -14,6 +14,7 @@ urlpatterns = [
     path('dashboard/', pro.AdminDashBoardView, name="admin-dashboard" ),
     path('admin/', acc.AdminLoginView, name="loginpage" ),
     path('admin_login_process/', acc.AdminLoginProcess, name="admin-login-process" ),
+    path('admin_logout_process/', acc.AdminLogoutProcress, name="admin-logout-process" ),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
 

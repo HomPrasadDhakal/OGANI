@@ -22,3 +22,8 @@ def AdminLoginProcess(request):
     else:
         messages.error(request,"Error in Login! Invalid Login Details!")
         return HttpResponseRedirect(reverse("loginpage"))
+
+
+def AdminLogoutProcress(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("loginpage"))
