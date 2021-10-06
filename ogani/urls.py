@@ -15,6 +15,11 @@ urlpatterns = [
     path('admin/', acc.AdminLoginView, name="loginpage" ),
     path('admin_login_process/', acc.AdminLoginProcess, name="admin-login-process" ),
     path('admin_logout_process/', acc.AdminLogoutProcress, name="admin-logout-process" ),
+    #URLS FOR PRODUCT CATEGORY
+    path('add_product_category/', pro.Add_Product_category, name="add-product-category"),
+    path('product_category_list/', pro.Product_category_list, name="product-category-list"),
+    path('product_category_update/<str:pk>', pro.product_category_update, name="product-category-update"),
+    path('product_category_delete/<str:pk>', pro.delete_product_category, name="product-category-delete"),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
     path('costomer_login_process/', acc.CustomerLoginProcress, name="costomer-login-process"),
