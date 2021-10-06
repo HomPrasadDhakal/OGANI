@@ -1,0 +1,57 @@
+{% extends 'admin/partials/layout.html' %}
+
+{% block title %}
+Add Product Category Here
+{% endblock title %}
+
+{% block navbar %}
+{% include 'admin/partials/navbar.html' %}
+{% endblock navbar %}
+
+{% block sidebar %}
+{% include 'admin/partials/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block staticdata %}
+{% include 'admin/partials/staticdata.html' %}
+{% endblock staticdata %}
+
+{% block dashboard %}
+<div class="row">
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Add Product Category</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST" action="{% url 'add-product-category' %}" novalidate>
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Product Category</label>
+                        {{ form.title }}
+                        {% for error in form.title.errors %}
+                            <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Add Product Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
+
+{% block footer %}
+{% include 'admin/partials/footer.html' %}
+{% endblock footer %}
+
+{% block script %}
+{% include 'admin/partials/script.html' %}
+{% endblock script %}
