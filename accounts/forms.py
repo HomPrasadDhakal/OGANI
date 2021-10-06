@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from accounts.models import user
 from django import forms
-
+from accounts.validators import *
+from django.core import validators
 
 
 class CustomerRegistrationform(UserCreationForm):

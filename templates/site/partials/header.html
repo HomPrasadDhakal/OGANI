@@ -79,12 +79,13 @@
                         </div>
                         {% if request.user.is_authenticated and request.user.is_customer %}
                         <div class="header__top__right__auth">
-                        <a href="{% url 'costomer-logout-process' %}">Logout</a>
+                            <a href="{% url 'costomer-logout-process' %}">Logout</a>
                         </div>
                         {% else %}
                         <div class="header__top__right__auth">
                             <!-- models for customer registration -->
-                            <a href="#" data-toggle="modal" data-target="#registermodal" data-whatever="@mdo"><i
+                            <a href="{% url 'costomer-registration-process' %}" id="costomerregistration"
+                                data-toggle="modal" data-target="#registermodal" data-whatever="@mdo"><i
                                     class="fa fa-user"></i> Register</a>
                             <div class="modal fade" id="registermodal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,6 +102,7 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     {{form.email}}
+                                                    <small style="color: red;">{{form.email.error}}</small>
                                                 </div>
                                                 <div class="form-row form-group">
                                                     <div class="col">
