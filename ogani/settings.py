@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #CUSTOM APPLICATIONS
     'accounts.apps.AccountsConfig',
     'products.apps.ProductsConfig',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
 AUTH_USER_MODEL  = 'accounts.user'
+
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 500,
+        'width': '107%',
+    },
+}
