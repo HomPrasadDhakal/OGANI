@@ -70,8 +70,16 @@ def Add_product(request):
     if request.method == "POST":
         form = product_form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
+            image  = request.FILES.getlist("product_image")
+            title = request.POST.get("seo_tite")
+            description = request.POST.get("seo_description")
+            keywords = request.POST.get("seo_keywords")
+            for i in image:
+                ProductGallary.objects.create(image_product=product, image=i)
+            ProductSeoSection.objects.create(seo_product=product, seo_tite=title, seo_description=description, seo_keywords=keywords)
             messages.success(request,"successfully added products.")
+            return redirect('productlist')
     else:
         form = product_form()
 
@@ -79,11 +87,52 @@ def Add_product(request):
     template = "admin/products/addproducts.html"
     return render(request, template, context)
 
+@login_required(login_url="loginpage")
+def Update_product(request, pk):
+    product = Product.objects.get(id=pk)
+    form = product_form(instance=product)
+    if request.method == "POST":
+        form = product_form(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = form.save()
+            image  = request.FILES.getlist("product_image")
+            title = request.POST.get("seo_tite")
+            description = request.POST.get("seo_description")
+            keywords = request.POST.get("seo_keywords")
+            for i in image:
+                ProductGallary.objects.update(image_product=product, image=i)
+            ProductSeoSection.objects.update(seo_product=product, seo_tite=title, seo_description=description, seo_keywords=keywords)
+            messages.success(request,"successfully Updated products.")
+            return redirect('productlist')
+    else:
+        form = product_form(instance=product)
+
+    context = {'form':form }
+    template = "admin/products/updateproduct.html"
+    return render(request, template, context)
+
 
 @login_required(login_url="loginpage")
 def Product_List(request):
-    productlist = Product.objects.all()
-    return render(request,"admin/products/productlist.html")
+    prolist = Product.objects.all()
+    context = {"prolist":prolist}
+    template = "admin/products/productlist.html"
+    return render(request, template, context)
+
+@login_required(login_url="loginpage")
+def Product_details(request, pk):
+    prodel = Product.objects.get(id=pk)
+    context = {"prodel":prodel}
+    template = "admin/products/productdetails.html"
+    return render(request, template, context)
+
+
+@login_required(login_url="loginpage")
+def deleteProduct(request, pk):
+    product = Product.objects.get(id=pk)
+    product.delete()
+    messages.success(request, "product has been deleted !!!")
+    return redirect('productlist')
 
 
 #VIEWS FOR OGANIC STORE SITE

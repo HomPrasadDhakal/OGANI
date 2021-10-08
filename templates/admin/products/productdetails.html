@@ -1,0 +1,149 @@
+{% extends 'admin/partials/layout.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block navbar %}
+{% include 'admin/partials/navbar.html' %}
+{% endblock navbar %}
+
+{% block sidebar %}
+{% include 'admin/partials/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block staticdata %}
+{% include 'admin/partials/staticdata.html' %}
+{% endblock staticdata %}
+
+{% block dashboard %}
+<section class="content">
+    <div class="card card-solid">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h3 class="d-inline-block d-sm-none">{{ prodel.title }}</h3>
+                    <div class="col-12">
+                        <img src="{{ prodel.cover_image.url }}" class="product-image" alt="Product Image">
+                    </div>
+                    <div class="col-12 product-image-thumbs">
+                        {% for i in prodel.productgallary_set.all %}
+                        <div class="product-image-thumb active"><img src="{{ i.image.url }}" alt="Product Image"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <h3 class="my-3">{{ prodel.title }}</h3>
+                    <hr>
+                    <h5 class="mt-3">Cateogry:-<small>{{ prodel.category.title }}</small></h5>
+                    <hr>
+                    <h5 class="mt-3">Stock:-<small>{{ prodel.stock }}</small></h5>
+                    <hr>
+                    <h5 class="mt-3">Weight/Pices:-<small>{{ prodel.weight }}</small></h5>
+                    <hr>
+                    <h5 class="mt-3">Shipping Time:<small>{{ prodel.shipping_time}}</small></h5>
+                    <div class="bg-gray py-2 px-3 mt-4">
+                        <h2 class="mb-0">
+                            Selling Price RS. {{ prodel.selling_price }}
+                        </h2>
+                        <h4 class="mt-0">
+                            <small>Marked Price: RS.{{ prodel.marked_price }}</small>
+                        </h4>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{% url 'update-product' prodel.id %}">
+                            <div class="btn btn-primary btn-lg btn-flat">
+                                <i class="fas fa-edit fa-lg mr-2"></i>
+                                Edit
+                            </div>
+                        </a>
+                        <div class="btn btn-danger btn-lg btn-flat"><a href="{% url 'deleteproducts' prodel.id %}"
+                                class="confirm-delete" title="Delete" data-toggle="modal"
+                                data-target="#confirmDeleteModal" id="deleteButton{{prodel.id}}"><i
+                                    class="fas fa-trash fa-lg mr-2"></i>DELETE</a>
+                        </div>
+                        <!-- delete modal -->
+                        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog"
+                            aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body confirm-delete">
+                                        Do you Really want to delete this ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                            id="confirmDeleteButtonModal">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <nav class="w-100">
+                    <div class="nav nav-tabs" id="product-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                            role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
+                    </div>
+                </nav>
+                <div class="tab-content p-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
+                        aria-labelledby="product-desc-tab"> {{ prodel.description|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <section class="content">
+        <div class="card">
+            <h3 class="text-center text-dark btn-primary py-4">THIS IS THE SEO DESCRIPTION</h3>
+            <div class=" card-body">
+                <div class="row">
+                    {% for q in prodel.productseosection_set.all %}
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="my-2 text-center">{{ q.seo_tite}}</h5>
+                            </div>
+                            <div class="col-12">
+                                <div class="row mt-4">
+                                    <p>{{ q.seo_description }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <h5 class="text-uppercase"> Key Words </h5>
+                                <p>{{ q.seo_keywords}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>
+{% endblock dashboard %}
+
+{% block footer %}
+{% include 'admin/partials/footer.html' %}
+{% endblock footer %}
+
+{% block script %}
+{% include 'admin/partials/script.html' %}
+<script>
+    $(document).on('click', '.confirm-delete', function () {
+        $("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
+    });
+
+    $(document).on('click', '#confirmDeleteButtonModal', function () {
+        var caller = $("#confirmDeleteButtonModal").closest(".modal").attr("caller-id");
+        window.location = $("#".concat(caller)).attr("href");
+    });
+</script>
+{% endblock script %}

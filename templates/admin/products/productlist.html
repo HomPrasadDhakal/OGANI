@@ -17,7 +17,27 @@
 {% endblock staticdata %}
 
 {% block dashboard %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">title</th>
+            <th scope="col">Marked Price</th>
+            <th scope="col">Selling Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in prolist %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td><a href="{% url 'productdetails' i.id %}">{{ i.title }}</a></td>
+            <td>{{ i.marked_price }}</td>
+            <td>{{ i.selling_price }}</td>
 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock dashboard %}
 
 {% block footer %}

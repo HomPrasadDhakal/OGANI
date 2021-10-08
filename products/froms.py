@@ -29,7 +29,68 @@ class Product_category_from(forms.ModelForm):
 
 #FORMS FOR PRODUCTS
 class product_form(forms.ModelForm):
-    
+    seo_tite = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO title here'
+        }
+    ))
+    seo_description = forms.CharField(required=True, widget=forms.Textarea(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO description here'
+        }
+    ))
+    seo_keywords = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO keywords here'
+        }
+    ))
+    product_image = forms.FileField(required=True, widget=forms.ClearableFileInput(
+        attrs={
+            'class':'form-control',
+            'multiple':'True',
+        }
+    ))
     class Meta:
         model = Product
-        fields = ['title', 'marked_price', 'selling_price', 'category', 'stock', 'shipping_time','weight','cover_image']
+        fields = ['title', 'marked_price', 'selling_price','description', 'category', 'stock', 'shipping_time','weight','cover_image']
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'placeholder':'Enter product title',
+                'class':'form-control',
+            }),
+            'marked_price': forms.NumberInput(attrs={
+                'placeholder':'Enter marked Price',
+                'class':'form-control',
+            }),
+            'selling_price': forms.NumberInput(attrs={
+                'placeholder':'Enter Selling Price',
+                'class':'form-control',
+            }),
+            'description': forms.Textarea(attrs={
+                'placeholder':'Enter Product description',
+                'class':'form-control',
+            }),
+            'category': forms.Select(attrs={
+                'placeholder':'Enter Product description',
+                'class':'form-control',
+            }),
+            'stock': forms.TextInput(attrs={
+                'placeholder':'Enter stock avalible',
+                'class':'form-control',
+            }),
+            'shipping_time': forms.TextInput(attrs={
+                'placeholder':'Enter Shipping time',
+                'class':'form-control',
+            }),
+            'weight': forms.TextInput(attrs={
+                'placeholder':'Enter weight/pics',
+                'class':'form-control',
+            }),
+            'cover_image': forms.ClearableFileInput(attrs={
+                'class':'form-control',
+            }),
+        }
