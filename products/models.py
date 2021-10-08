@@ -35,9 +35,9 @@ class ProductGallary(models.Model):
 
 class ProductSeoSection(models.Model):
     seo_product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    seo_tite = models.CharField(max_length=255)
+    seo_tite = models.CharField(max_length=500)
     seo_description = models.TextField()
-    seo_keywords = models.CharField(max_length=2500)
+    seo_keywords = models.CharField(max_length=500)
 
     def __str__(self):
         return self.seo_title

@@ -1,0 +1,179 @@
+{% extends 'admin/partials/layout.html' %}
+
+{% block title %}
+Add Product Here
+{% endblock title %}
+
+{% block navbar %}
+{% include 'admin/partials/navbar.html' %}
+{% endblock navbar %}
+
+{% block sidebar %}
+{% include 'admin/partials/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block staticdata %}
+{% include 'admin/partials/staticdata.html' %}
+{% endblock staticdata %}
+
+{% block dashboard %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Update Product</h3>
+            </div>
+            <form method="POST" action="" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Product Title</label>
+                        {{ form.title }}
+                        {% for error in form.title.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Marked Price</label>
+                                {{form.marked_price}}
+                                {% for error in form.marked_price.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class=" col-md-6">
+                                <label>Selling Price</label>
+                                {{ form.selling_price }}
+                                {% for error in form.selling_price.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" form-group">
+                        <label>Description</label>
+                        {{ form.media }}
+                        {{ form.description }}
+                        {% for error in form.description.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Category</label>
+                                {{ form.category }}
+                                {% for error in form.category.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp
+                                    {{ error }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6">
+                                <label>Stock</label>
+                                {{ form.stock }}
+                                {% for error in form.stock.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp
+                                    {{ error }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Time</label>
+                        {{ form.shipping_time }}
+                        {% for error in form.title.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Weight</label>
+                                {{ form.weight }}
+                                {% for error in form.title.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6">
+                                <label>Cover Image</label>
+                                {{ form.cover_image }}
+                                {% for error in form.product_image.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>More Image</label>
+                        {{ form.product_image }}
+                        {% for error in form.product_image.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <h3 class="text-center"
+                        style="color: white; border: solid wheat; background-color: rgb(7, 64, 253);">
+                        UPDATE
+                        SEO
+                        DETAILS</h3>
+                    <hr>
+                    <div class="form-group">
+                        <label>SEO Title</label>
+                        {{ form.seo_tite }}
+                        {% for error in form.product_image.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label>SEO Descrciption</label>
+                        {{ form.seo_description }}
+                        {% for error in form.product_image.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label>Seo Keywords</label>
+                        {{ form.seo_keywords }}
+                        {% for error in form.product_image.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Update Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
+
+{% block footer %}
+{% include 'admin/partials/footer.html' %}
+{% endblock footer %}
+
+{% block script %}
+{% include 'admin/partials/script.html' %}
+{% endblock script %}

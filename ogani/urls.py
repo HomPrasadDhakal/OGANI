@@ -24,7 +24,10 @@ urlpatterns = [
     path('product_category_delete/<str:pk>', pro.delete_product_category, name="product-category-delete"),
     #URLS FOR PRODUCTS
     path('add_procucts/', pro.Add_product, name="add-product"),
+    path('update_procucts/<str:pk>', pro.Update_product, name="update-product"),
     path('procucts_list/', pro.Product_List, name="productlist"),
+    path('procucts_detail/<str:pk>', pro.Product_details, name="productdetails"),
+    path('procucts_delete/<str:pk>', pro.deleteProduct, name="deleteproducts"),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
     path('costomer_login_process/', acc.CustomerLoginProcress, name="costomer-login-process"),
