@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from accounts.models import user
 
 # MODELS FOR PRODUCT CATEGORY
 class ProductCategory(models.Model):
@@ -42,4 +43,38 @@ class ProductSeoSection(models.Model):
     def __str__(self):
         return self.seo_title
     
+
+#MODELS FOR BLOGS AND IT'S CATEGORY AND SEO SECTION
+class BlogsCategory(models.Model):
+    title = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+     
+    def __str__(self):
+        return self.title
     
+
+
+class Blogs(models.Model):
+    category = models.ForeignKey(BlogsCategory, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    content = RichTextField()
+    author = models.ForeignKey(user, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="blogs_pics")
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+     
+    def __str__(self):
+        return self.title
+
+
+class BlogsSeoSection(models.Model):
+    bog = models.ForeignKey(BlogsCategory, on_delete=models.CASCADE)
+    seo_title = models.CharField(max_length=255)
+    seo_desccription = models.TextField()
+    seo_keywords = models.CharField(max_length=255)
+    
+    
+    def __str__(self):
+        return self.title
