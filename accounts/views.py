@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from accounts.forms import FormPasswordChange
 
 # VIEWS FOR ADMIN PANNEL
 def AdminLoginView(request):
@@ -71,3 +71,17 @@ def CustomerLogoutProcess(request):
     logout(request)
     messages.success(request,"successfully logout")
     return redirect('front-end-index')
+
+#VIEWS FOR CHANGEPASSWORD
+def AdminPasswordChangeView(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            fm = FormPasswordChange(user=request.user, data=request.POST)
+            if fm.is_valid():
+                fm.save()
+                return redirect('backenddashbaord')
+        else:
+            fm = FormPasswordChange(user=request.user)
+        return render(request,"admin/changepassword/changepassword.html",{"form":fm })
+    else:
+        return redirect('loginpage')

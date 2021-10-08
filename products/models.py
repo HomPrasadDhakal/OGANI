@@ -12,8 +12,8 @@ class ProductCategory(models.Model):
 # MODELS FOR PRODUCT AND IT'S SEO SECTION
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    selling_price = models.IntegerField()
     marked_price = models.IntegerField()
+    selling_price = models.IntegerField()
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     description = RichTextField()
     stock = models.CharField(max_length=255)
@@ -26,7 +26,7 @@ class Product(models.Model):
     
 
 class ProductGallary(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image_product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.FileField(upload_to="products/images", null=True, blank=True)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class ProductGallary(models.Model):
 
 
 class ProductSeoSection(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    seo_product = models.ForeignKey(Product, on_delete=models.CASCADE)
     seo_tite = models.CharField(max_length=255)
     seo_description = models.TextField()
     seo_keywords = models.CharField(max_length=2500)
