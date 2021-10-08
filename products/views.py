@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 
+
 # VIEWS FOR ADMIN PANNEL
 @login_required(login_url="loginpage")
 def AdminDashBoardView(request):
@@ -83,6 +84,7 @@ def Add_product(request):
 def Product_List(request):
     productlist = Product.objects.all()
     return render(request,"admin/products/productlist.html")
+
 
 #VIEWS FOR OGANIC STORE SITE
 def FrontEndView(request):

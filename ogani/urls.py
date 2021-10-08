@@ -15,6 +15,8 @@ urlpatterns = [
     path('admin/', acc.AdminLoginView, name="loginpage" ),
     path('admin_login_process/', acc.AdminLoginProcess, name="admin-login-process" ),
     path('admin_logout_process/', acc.AdminLogoutProcress, name="admin-logout-process" ),
+    #URLS FOR ADMINPANNEL PASSWORD CHANGE
+    path('admin_pannel_password_change/', acc.AdminPasswordChangeView, name="admin-password-change"),
     #URLS FOR PRODUCT CATEGORY
     path('add_product_category/', pro.Add_Product_category, name="add-product-category"),
     path('product_category_list/', pro.Product_category_list, name="product-category-list"),
