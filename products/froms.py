@@ -94,3 +94,17 @@ class product_form(forms.ModelForm):
                 'class':'form-control',
             }),
         }
+
+
+#FORMS FOR BLOGS CATEGORY
+class blogs_Category_form(forms.ModelForm):
+    class Meta:
+        model = BlogsCategory
+        fields = ["title", ]
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'placeholder':'Enter product title',
+                'class':'form-control',
+            }),
+        }

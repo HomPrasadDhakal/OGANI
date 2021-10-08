@@ -54,7 +54,6 @@ class BlogsCategory(models.Model):
         return self.title
     
 
-
 class Blogs(models.Model):
     category = models.ForeignKey(BlogsCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
@@ -64,7 +63,7 @@ class Blogs(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
-     
+
     def __str__(self):
         return self.title
 
@@ -75,6 +74,6 @@ class BlogsSeoSection(models.Model):
     seo_desccription = models.TextField()
     seo_keywords = models.CharField(max_length=255)
     
-    
+
     def __str__(self):
         return self.title

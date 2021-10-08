@@ -28,6 +28,11 @@ urlpatterns = [
     path('procucts_list/', pro.Product_List, name="productlist"),
     path('procucts_detail/<str:pk>', pro.Product_details, name="productdetails"),
     path('procucts_delete/<str:pk>', pro.deleteProduct, name="deleteproducts"),
+    #URLS FOR BLOGS CATEGORY
+    path('add__category_blogs/', pro.Add_Blog_category, name="add-blogs-category"),
+    path('blogs_category_list/', pro.Blogscategorylist, name="blogs-category-list"),
+    path('blogs_category_delete/<str:pk>', pro.deleteProduct, name="blogs-category-delete"),
+    path('blogs_category_update/<str:pk>', pro.blog_category_update, name="blogs-category-update"),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
     path('costomer_login_process/', acc.CustomerLoginProcress, name="costomer-login-process"),

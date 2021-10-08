@@ -135,6 +135,56 @@ def deleteProduct(request, pk):
     return redirect('productlist')
 
 
+#VIEWS FOR BLOGS CATEGORY
+@login_required(login_url="loginpage")
+def Add_Blog_category(request):
+    form = blogs_Category_form()
+    if request.method == "POST":
+        form = blogs_Category_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"successfully added blogs category")
+            return redirect('blogs-category-list')
+    else:
+        form = blogs_Category_form()
+    template = "admin/blogcategory/addblogcategory.html"
+    context = {"form":form}
+    return render(request, template, context)
+
+
+@login_required(login_url="loginpage")
+def Blogscategorylist(request):
+    blogscatlist = BlogsCategory.objects.all()
+    template = "admin/blogcategory/blogscategorylist.html"
+    context = {"blogscatlist":blogscatlist}
+    return render(request, template, context)
+
+@login_required(login_url="loginpage")
+def deleteProduct(request, pk):
+    blogcat = BlogsCategory.objects.get(id=pk)
+    blogcat.delete()
+    messages.success(request, "blog category has been deleted !!!")
+    return redirect('blogs-category-list')
+
+
+@login_required(login_url="loginpage")
+def blog_category_update(request, pk):
+    blogcat = BlogsCategory.objects.get(id=pk)
+    form = blogs_Category_form(request.POST, instance=blogcat)
+    if request.method == "POST":
+        form = Product_category_from(request.POST, instance=blogcat)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "update product category successfully !")
+            return redirect('blogs-category-list')
+        else:
+            form = blogs_Category_form(instance=blogcat)
+    else:
+        form = blogs_Category_form(instance=blogcat)
+    template = "admin/blogcategory/blogscategoryupdate.html"
+    context = {"form":form}
+    return render(request, template, context)
+
 #VIEWS FOR OGANIC STORE SITE
 def FrontEndView(request):
     template = "site/index.html"
