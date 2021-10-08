@@ -62,6 +62,28 @@ def delete_product_category(request, pk):
     messages.success(request, "product category has been deleted !!!")
     return redirect('product-category-list')
 
+#VIEWS FOR PRODUCTS
+@login_required(login_url="loginpage")
+def Add_product(request):
+    form = product_form()
+    if request.method == "POST":
+        form = product_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"successfully added products.")
+    else:
+        form = product_form()
+
+    context = {'form':form }
+    template = "admin/products/addproducts.html"
+    return render(request, template, context)
+
+
+@login_required(login_url="loginpage")
+def Product_List(request):
+    productlist = Product.objects.all()
+    return render(request,"admin/products/productlist.html")
+
 #VIEWS FOR OGANIC STORE SITE
 def FrontEndView(request):
     template = "site/index.html"

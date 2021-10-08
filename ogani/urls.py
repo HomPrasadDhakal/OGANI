@@ -20,11 +20,15 @@ urlpatterns = [
     path('product_category_list/', pro.Product_category_list, name="product-category-list"),
     path('product_category_update/<str:pk>', pro.product_category_update, name="product-category-update"),
     path('product_category_delete/<str:pk>', pro.delete_product_category, name="product-category-delete"),
+    #URLS FOR PRODUCTS
+    path('add_procucts/', pro.Add_product, name="add-product"),
+    path('procucts_list/', pro.Product_List, name="productlist"),
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),
     path('costomer_login_process/', acc.CustomerLoginProcress, name="costomer-login-process"),
     path('costomer_registration_process/', acc.CustomerRegistrationView, name="costomer-registration-process"),
     path('costomer_logout_process/', acc.CustomerLogoutProcess, name="costomer-logout-process"),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
