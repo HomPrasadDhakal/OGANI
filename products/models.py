@@ -9,8 +9,9 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.title
+        
 
-# MODELS FOR PRODUCT AND IT'S SEO SECTION
+#MODELS FOR PRODUCT AND IT'S SEO SECTION
 class Product(models.Model):
     title = models.CharField(max_length=255)
     marked_price = models.IntegerField()
@@ -69,9 +70,9 @@ class Blogs(models.Model):
 
 
 class BlogsSeoSection(models.Model):
-    bog = models.ForeignKey(BlogsCategory, on_delete=models.CASCADE)
+    seo_blog = models.ForeignKey(BlogsCategory, on_delete=models.CASCADE)
     seo_title = models.CharField(max_length=255)
-    seo_desccription = models.TextField()
+    seo_description = models.TextField()
     seo_keywords = models.CharField(max_length=255)
     
 

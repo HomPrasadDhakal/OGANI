@@ -108,3 +108,43 @@ class blogs_Category_form(forms.ModelForm):
                 'class':'form-control',
             }),
         }
+
+#FORMS FOR BLOGS
+class Blogs_From(forms.ModelForm):
+    seo_tite = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO title here'
+        }
+    ))
+    seo_description = forms.CharField(required=True, widget=forms.Textarea(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO description here'
+        }
+    ))
+    seo_keywords = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+            'placeholder':'Enter your SEO keywords here'
+        }
+    ))
+    class Meta:
+        model = Blogs
+        fields = ["title","category","content","image"]
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':"enter blog title "
+            }),
+            'category': forms.Select(attrs={
+                'class':'form-control',
+            }),
+            'content': forms.Textarea(attrs={
+                'class':'form-control',
+            }),
+            'image': forms.ClearableFileInput(attrs={
+                'class':'form-control',
+            }),
+        }

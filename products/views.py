@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from products .models import *
+from accounts.models import user
 
 
 
@@ -86,6 +88,8 @@ def Add_product(request):
     context = {'form':form }
     template = "admin/products/addproducts.html"
     return render(request, template, context)
+
+
 
 @login_required(login_url="loginpage")
 def Update_product(request, pk):
@@ -185,10 +189,36 @@ def blog_category_update(request, pk):
     context = {"form":form}
     return render(request, template, context)
 
+#VIEWS FOR ADD BLOGS
+@login_required(login_url="loginpage")
+def Add_blogs(request):
+    if request.method == "POST":
+        form = Blogs_From(request.POST, request.FILES)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author=request.user
+            blogs = blog.save()
+            title = request.POST.get("seo_tite")
+            description = request.POST.get("seo_description")
+            keywords = request.POST.get("seo_keywords")
+            BlogsSeoSection.objects.create(seo_blog=blogs, seo_title=title, seo_description=description, seo_keywords=keywords)
+            messages.success(request, "successfully added blogs! ")
+            return redirect('admin-blogs-list')
+    else:
+        form = Blogs_From()
+    context = {'form':form }
+    template = "admin/blogs/addblogs.html"
+    return render(request, template, context)
+
+@login_required(login_url="loginpage")
+def BlogListView(request):
+    blogslist = Blogs.objects.all().order_by('-id')
+    template = "admin/blogs/blogslist.html"
+    context = {"blogslist": blogslist}
+    return render(request, template, context)
+
 #VIEWS FOR OGANIC STORE SITE
 def FrontEndView(request):
     template = "site/index.html"
     context = {}
     return render(request, template, context)
-
-

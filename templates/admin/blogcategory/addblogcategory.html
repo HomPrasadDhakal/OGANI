@@ -1,7 +1,7 @@
 {% extends 'admin/partials/layout.html' %}
 
 {% block title %}
-Add Product Category Here
+Add BLogs Category Here
 {% endblock title %}
 
 {% block navbar %}
@@ -30,10 +30,11 @@ Add Product Category Here
                 {% csrf_token %}
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Product Category</label>
+                        <label>Blogs Category</label>
                         {{ form.title }}
                         {% for error in form.title.errors %}
-                            <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}</p>
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}
+                        </p>
                         {% endfor %}
                     </div>
                 </div>

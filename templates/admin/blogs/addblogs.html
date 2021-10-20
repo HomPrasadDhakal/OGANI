@@ -1,0 +1,116 @@
+{% extends 'admin/partials/layout.html' %}
+
+{% block title %}
+Add Product Here
+{% endblock title %}
+
+{% block navbar %}
+{% include 'admin/partials/navbar.html' %}
+{% endblock navbar %}
+
+{% block sidebar %}
+{% include 'admin/partials/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block staticdata %}
+{% include 'admin/partials/staticdata.html' %}
+{% endblock staticdata %}
+
+{% block dashboard %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Add Blogs</h3>
+            </div>
+            <form method="POST" action="{% url 'add-blogs' %}" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Product Title</label>
+                        {{ form.title }}
+                        {% for error in form.title.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Category</label>
+                                {{form.category}}
+                                {% for error in form.category.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class=" col-md-6">
+                                <label>images</label>
+                                {{ form.image }}
+                                {% for error in form.image.errors %}
+                                <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                                    {{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" form-group">
+                        <label>Blog Content</label>
+                        {{ form.media }}
+                        {{ form.content }}
+                        {% for error in form.content.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;{{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <h3 class="text-center"
+                        style="color: white; border: solid wheat; background-color: rgb(7, 64, 253);">
+                        ADD
+                        SEO
+                        DETAILS</h3>
+                    <hr>
+                    <div class="form-group">
+                        <label>SEO Title</label>
+                        {{ form.seo_tite }}
+                        {% for error in form.seo_tite.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label>SEO Descrciption</label>
+                        {{ form.seo_description }}
+                        {% for error in form.seo_description.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label>Seo Keywords</label>
+                        {{ form.seo_keywords }}
+                        {% for error in form.seo_keywords.errors %}
+                        <p style="color: red; margin-left:20px;"><i class="fas fa-caret-right"></i> &nbsp;
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Add Blogs</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
+
+{% block footer %}
+{% include 'admin/partials/footer.html' %}
+{% endblock footer %}
+
+{% block script %}
+{% include 'admin/partials/script.html' %}
+{% endblock script %}
