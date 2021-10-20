@@ -39,6 +39,7 @@ urlpatterns = [
     #URLS FOR BLOGS
     path("add_blogs", pro.Add_blogs, name="add-blogs"),
     path("blogs_list", pro.BlogListView, name="admin-blogs-list"),
+    path("delete_bogs/<str:pk>", pro.DeleteBlogs, name="delete-blogs"),
     
     #URLS FOR SITE FRONTEND
     path('', pro.FrontEndView, name="front-end-index"),

@@ -189,7 +189,7 @@ def blog_category_update(request, pk):
     context = {"form":form}
     return render(request, template, context)
 
-#VIEWS FOR ADD BLOGS
+#VIEWS FOR BLOGS
 @login_required(login_url="loginpage")
 def Add_blogs(request):
     if request.method == "POST":
@@ -216,6 +216,15 @@ def BlogListView(request):
     template = "admin/blogs/blogslist.html"
     context = {"blogslist": blogslist}
     return render(request, template, context)
+
+
+@login_required(login_url="loginpage")
+def DeleteBlogs(request, pk):
+    blog = Blogs.objects.get(id=pk)
+    blog.delete()
+    messages.success(request, "blog has been deleted !!!")
+    return redirect('admin-blogs-list')
+    
 
 #VIEWS FOR OGANIC STORE SITE
 def FrontEndView(request):
